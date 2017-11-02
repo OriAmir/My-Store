@@ -1,0 +1,9 @@
+<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+    <a class="dropdown-item" *ngIf="!isConnect" routerLink="/signin">Log in</a>
+    <a class="dropdown-item" *ngIf="!isConnect" routerLink="/signup">Sign up</a>
+    <a class="dropdown-item" *ngIf="isConnect && !isAdmin" routerLink="admin/product-edit">My basket</a>
+    
+    <a class="dropdown-item" *ngIf="isConnect && isAdmin" routerLink="admin/product-edit">Manage products</a>
+    <a class="dropdown-item" *ngIf="isConnect" (click)="onLogOut()">Logout</a>
+    
+  </div>

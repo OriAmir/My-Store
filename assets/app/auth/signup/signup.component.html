@@ -1,0 +1,82 @@
+
+<h1>Sign UP</h1>
+<br/>
+<form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="col-lg-5 col-md-5 col-sm-12">
+            <div class="form-group">
+              <label for="firstName">First Name</label>
+              <input
+                type="text"
+                id="firstName"
+                formControlName="firstName"
+                class="form-control">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-5 col-md-5 col-sm-12">
+            <div class="form-group">
+              <label for="lastName">Last Name</label>
+              <input
+                type="text"
+                id="lastName"
+                formControlName="lastName"
+                class="form-control"
+                >
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-5 col-md-5 col-sm-12">
+            <div class="form-group">
+              <label for="description">Email</label>
+              <input
+                type="email"
+                id="email"
+                class="form-control"
+                formControlName="email"
+                >
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+                <div class="col-lg-5 col-md-5 col-sm-12">
+                  <div class="form-group">
+                    <label for="password">Password</label>
+                    <input
+                      type="password"
+                      id="password"
+                      class="form-control"
+                      formControlName="password"
+                      >
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                    <div class="col-lg-5 col-md-5 col-sm-12">
+                      <button
+                        type="submit"
+                        class="btn btn-success"
+                        [disabled]="!signupForm.valid">Register</button>
+                    </div>
+                  </div>
+              
+        
+      </form>
+
+      <br/>
+      <div class="row">
+  
+        <div class="col-lg-3 col-md-3 col-sm-12">
+          <div class="tt"  (click)="fbLogin()">
+            <a class="btn btn-block btn-social btn-facebook" style="color:white ; cursor:pointer">
+          <span class="fa fa-facebook"></span> Sign up with Facebook
+          </a>
+          </div>
+        </div>
+  
+      </div>
+  

@@ -1,0 +1,37 @@
+        
+       <!-- <div class="thumbail">
+    <img src="{{product.image}}">
+    <div class="catpion" >
+        <h3>{{product.name}}</h3>
+        <p>{{product.details}}</p>
+        <p><a href="#" class="btn btn-primary" role="button">check</a></p>
+    </div>
+
+</div> -->
+
+      <div id="products" class="list-group">
+            
+
+      <div class="thumbnail" style="margin-right:10px">
+          <div id="wrapperTry">
+                <p class="text" *ngIf="textDetails">Click for more details</p>                
+            <img class="group list-group-image" [ngStyle]="color" (mouseover)="changeStyle($event)" (mouseout)="changeStyle($event)" src="{{product.image}}" alt="" [routerLink]="product._id">
+        </div>
+            <div class="caption" style="border: 2px solid gray">
+                <h4 class="group inner list-group-item-heading">
+                        {{product.name}}</h4>
+                <p class="group inner list-group-item-text">
+                        {{product.description}}</p>
+                <div class="row">
+                    <div class="col-xs-12 col-md-6">
+                        <p class="lead">
+                                {{product.price}} NIS</p>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                        <a class="btn btn-success" (click)="addProduct(product._id)">Add to cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </div>
