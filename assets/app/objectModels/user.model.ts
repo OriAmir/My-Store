@@ -1,9 +1,12 @@
 export class User {
-    constructor(public email: string,
+    constructor(
+                public firstName: string,
+                public lastName: string,
                 public password: string,
-                public role?:Number,
-                public firstName?: string,
-                public lastName?: string,
-                public products?:string[]
+                public email: string,
+                public products:string[],
+                public role:Number,
+                public registered: Boolean,
+                public randomKey:string
                 ) {}
 }

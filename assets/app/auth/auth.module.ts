@@ -8,16 +8,29 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from './auth.service';
 
 import { CookieService} from 'ngx-cookie-service';
+import { ConfirmRegistrationComponent } from './confirm-registration/confirm-registration.component';
+
+import {LoadingModule,ANIMATION_TYPES} from 'ngx-loading';
+
 @NgModule({
   declarations: [
     SigninComponent,
-    SignupComponent
+    SignupComponent,
+    ConfirmRegistrationComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     AuthRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    LoadingModule.forRoot({
+      animationType: ANIMATION_TYPES.threeBounce,
+      backdropBackgroundColour: 'rgba(0,0,0,0.1)', 
+      backdropBorderRadius: '4px',
+      primaryColour: '#ffffff', 
+      secondaryColour: '#ffffff', 
+      tertiaryColour: '#ffffff'
+  })
   ],
   providers: [
     AuthService,

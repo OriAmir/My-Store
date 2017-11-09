@@ -1,3 +1,17 @@
 h1 {
     color: red;
 }
+
+.test
+{
+    min-height: 100%;
+    height: auto !important;
+    height:100%;
+    margin: 0 auto -35px;
+}
+
+.push
+{
+    height:35px;
+}
+

@@ -20,7 +20,9 @@ import { FilterPipe } from './products/product-list/filter.pipe';
 import { FormsModule } from '@angular/forms';
 import { ErrorComponent } from './errors/error.component';
 import { ErrorService } from './errors/error.service';
-
+import { MailService } from './shared/mail.service';
+import { Footeromponent } from './footer/footer.component';
+import {LoadingModule} from 'ngx-loading';
 
 @NgModule({
     declarations: [AppComponent,
@@ -29,6 +31,7 @@ import { ErrorService } from './errors/error.service';
                    ProductListComponent,
                    ProductItemComponent,                   
                    ProductDetailComponent,
+                   Footeromponent,
                    AuthComponent,
                    ErrorComponent,                   
                    FilterPipe
@@ -38,10 +41,11 @@ import { ErrorService } from './errors/error.service';
               AppRoutingModule,                
               AuthModule,
               AdminModule,
-              FormsModule
+              FormsModule,
+              LoadingModule
             ],
     bootstrap: [AppComponent],
-    providers:[ProductsService,ErrorService,AuthGuard,AdminGuard]
+    providers:[ProductsService,ErrorService,MailService,AuthGuard,AdminGuard]
 })
 export class AppModule {
 

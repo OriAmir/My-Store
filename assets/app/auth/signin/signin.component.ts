@@ -12,8 +12,10 @@ import { ErrorService } from '../../errors/error.service';
     styleUrls: ['./signin.component.css']
 })
 export class SigninComponent implements OnInit  {
+
     signinForm: FormGroup;
     public currentUser : any = {};
+    public loading=false;
     
     constructor(private authService: AuthService,
                 private router: Router,
@@ -54,10 +56,14 @@ export class SigninComponent implements OnInit  {
 
 
     onSubmit() {
-        const user = new User(
-            this.signinForm.value['email'],
-            this.signinForm.value['password'],
-        );
+
+        const user={
+            email:             this.signinForm.value['email'],
+
+            password:            this.signinForm.value['password'],
+            
+        };
+    
         this.authService.signinUser(user)
             .subscribe(
                 data => {
@@ -85,8 +91,4 @@ export class SigninComponent implements OnInit  {
 
         return false;
     }
-
-  
-
-    
 }

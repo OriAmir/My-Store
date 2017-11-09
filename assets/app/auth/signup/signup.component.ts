@@ -13,7 +13,8 @@ import { ErrorService } from '../../errors/error.service';
 export class SignupComponent implements OnInit  {
 
     signupForm: FormGroup;
-    
+    public loading=false;
+
     constructor(private authService: AuthService,
                 private router: Router,
                 private errorService: ErrorService ) { }
@@ -37,27 +38,38 @@ export class SignupComponent implements OnInit  {
       }
 
       onSubmit() {
-
+        this.loading=true;
+        
         const user = new User(
-            this.signupForm.value['email'],
-            this.signupForm.value['password'],
-            50,
-            this.signupForm.value['firstName'],
+           this.signupForm.value['firstName'],
             this.signupForm.value['lastName'],
+            this.signupForm.value['password'],            
+            this.signupForm.value['email'],
+            [],
+            50,
+            false,
+            ''
         );
-
         this.authService.signupUser(user)
-          .subscribe(
+          .then(
               data => {
-                console.log(data);
-                this.router.navigateByUrl('/signin');
-                
+                //console.log("return to signupcompnent:")
+              //  console.log(data);
+              this.loading=false;
+              this.errorService.handleError({'title':'test','message':'gggg'}); //Set eror message on screen
+              
+              this.router.navigateByUrl("/signin");
+
+              
               },
               error => {
+                this.loading=false;                
+                console.log("error");
+                console.log(error);
                 var errorMsg=JSON.parse( error.error);
                 this.errorService.handleError(errorMsg); //Set eror message on screen
               }
-          );
+          ),(err)=>console.log("errrrrror:");
          this.signupForm.reset();
       }
 

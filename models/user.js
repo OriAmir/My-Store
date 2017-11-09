@@ -7,8 +7,10 @@ var schema = new Schema({
     lastName: {type: String, required: true},
     password: {type: String, required: true},
     email: {type: String, required: true, unique: true},
+    products :[{ type: Schema.Types.ObjectId ,ref:'Product'}],
     role: {type: Number, required: true},
-    products :[{ type: Schema.Types.ObjectId ,ref:'Product'}]
+    registered:{type: Boolean ,required: true},
+    randomKey: {type:String,required:true},
 });
 
 schema.plugin(mongooseUniqueValidator);

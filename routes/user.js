@@ -63,14 +63,17 @@ router.post('/auth/facebook', passport.authenticate('facebook-token',{session: f
         })
     });
 
+
 router.post('/signup', function (req, response, next) {
     var user = new User({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         password: bcrypt.hashSync(req.body.password, 10),
         email: req.body.email,
+        products:req.body.products,     
         role:50,
-        products:req.body.products
+        registered:req.body.registered,
+        randomKey:req.body.randomKey
     });
 
     User.addUser(user,function(err, userSaved) {
@@ -134,6 +137,55 @@ router.post('/signin', function(req, res, next) {
         });
     });
 });
+
+
+router.post('/confirmkey', function(req, res, next) {
+
+    User.findOne({randomKey: req.body.randomKey}, function(err, user) {    
+        if (err) {
+            return res.status(500).json({
+                title: 'Server error' ,
+                message: 'Please try again later of contact us'
+            });
+        }
+
+        if(!user)
+        {
+            return res.status(401).json({
+                title: 'Errro' ,
+                message: 'User not exist'
+            });
+
+        }
+        if (user) {
+
+            user.registered=true;
+            user.randomKey=-1;
+
+            user.save(function(err,user){
+
+                if(!user || err)
+                    return res.status(401).json({
+                        title: 'Server error' ,
+                        message: 'Please try again later of contact us'
+                    });
+
+                return res.status(200).json({
+                    title: 'Success' ,
+                    message: 'Now you could log-in with your username and password',
+                    val:user
+                });
+
+            })
+          
+        }
+
+
+    });
+});
+
+
+
 
 
 module.exports = router;
