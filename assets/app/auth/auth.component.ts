@@ -33,6 +33,8 @@ export class AuthComponent implements OnInit {
         this.authService.isLoggedIn()
         .subscribe(
             data => {
+                console.log("DATAAAA=>");
+                console.log(data);
                 this.isConnect=true;
                 if(data.val.user.role==100) //isAdmin
                     this.isAdmin=true;

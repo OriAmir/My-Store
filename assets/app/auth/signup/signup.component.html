@@ -38,6 +38,8 @@
                 class="form-control"
                 formControlName="email"
                 >
+                <small *ngIf="!signupForm.get('email').valid && signupForm.get('email').touched" class="form-text" style="color:red">Email is wrong</small>              
+                
             </div>
           </div>
         </div>
@@ -52,16 +54,36 @@
                       class="form-control"
                       formControlName="password"
                       >
+                      <small *ngIf="!signupForm.get('password').valid && signupForm.get('password').touched" class="form-text" style="color:red">password required</small>              
+                      
                   </div>
                 </div>
+          </div>
+
+          <div class="row">
+              <div class="col-lg-5 col-md-5 col-sm-12">
+                <div class="form-group">
+                  <label for="password">Confirm password</label>
+                  <input
+                    type="password"
+                    id="confirmPassword"
+                    class="form-control"
+                    formControlName="confirmPassword"
+                    >
+                    <small *ngIf="!signupForm.get('confirmPassword').valid && signupForm.get('confirmPassword').touched" class="form-text" style="color:red">password must be equals</small>              
+                    
+                </div>
               </div>
+        </div>
+
+
 
               <div class="row">
-                    <div class="col-lg-5 col-md-5 col-sm-12">
-                      <button
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                        <button style="width:100%"
                         type="submit"
                         class="btn btn-success"
-                        [disabled]="!signupForm.valid">Register</button>
+                        [disabled]="!signupForm.valid">Sign up</button>
                     </div>
                   </div>
               
@@ -71,7 +93,7 @@
       <br/>
       <div class="row">
   
-        <div class="col-lg-3 col-md-3 col-sm-12">
+        <div class="col-lg-4 col-md-4 col-sm-12">
           <div class="tt"  (click)="fbLogin()">
             <a class="btn btn-block btn-social btn-facebook" style="color:white ; cursor:pointer">
           <span class="fa fa-facebook"></span> Sign up with Facebook
@@ -80,4 +102,6 @@
         </div>
   
       </div>
+
+      <br/>
   

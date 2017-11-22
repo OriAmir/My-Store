@@ -19,6 +19,7 @@ router.post('/auth/facebook', passport.authenticate('facebook-token',{session: f
                 var temp_user={
                     'id':req.user._id,
                     'email': req.user.email,
+                    'firstName': req.user.firstName,                    
                     'role':req.user.role
                 };
 
@@ -46,21 +47,21 @@ router.post('/auth/facebook', passport.authenticate('facebook-token',{session: f
                         title: 'Login Failed' ,
                         message: 'You are Not Authenticated'
                     });
-                
-                    return res.status(201).json({
-                        message: 'User authorized',
+                else
+                {
+                    res.status(201).json({
+                        message: 'User authorized2',
                         val: decoded
                     });
+                }
             })                
-
-          
-          //  return next();
         }
-        res.status(201).json({
-            message: 'User authorized',
-            val: decoded
-        });
-        })
+        else
+            res.status(201).json({
+                message: 'User authorized2',
+                val: decoded
+            });
+    })
     });
 
 
@@ -116,6 +117,14 @@ router.post('/signin', function(req, res, next) {
                     });
         }
 
+        if(user.registered==false || user.randomKey!=-1)
+        {
+            return res.status(401).json({
+                title: 'Login Failed' ,
+                message: 'You first need to authorized your account via mail'
+            });
+        }
+
         if (!bcrypt.compareSync(req.body.password, user.password)) {
             return res.status(401).json({
                 title: 'Login Failed' ,
@@ -125,8 +134,9 @@ router.post('/signin', function(req, res, next) {
 
         var temp_user={
             'id':user._id,
+            'email': user.email,            
             'firstName': user.firstName,
-            'role':user.role
+            'role':user.role,
         };
         
         var token = jwt.sign({user: temp_user}, config_token.secret, {expiresIn: 86400});

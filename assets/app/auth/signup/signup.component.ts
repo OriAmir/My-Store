@@ -20,6 +20,7 @@ export class SignupComponent implements OnInit  {
                 private errorService: ErrorService ) { }
     
     ngOnInit() {
+            this.passwordValidator=this.passwordValidator.bind(this);
             this.initForm();
       }
 
@@ -28,12 +29,15 @@ export class SignupComponent implements OnInit  {
         let lastName = '';
         let email = '';
         let password = '';
-    
+        let confirmPassword = '';
+        
         this.signupForm = new FormGroup({
           'firstName': new FormControl(firstName, Validators.required),
           'lastName': new FormControl(lastName, Validators.required),
           'email': new FormControl(email, [Validators.required,Validators.email]),
-          'password': new FormControl(email, Validators.required)
+          'password': new FormControl(password, Validators.required),
+          'confirmPassword': new FormControl(confirmPassword, [Validators.required,this.passwordValidator])
+          
         });
       }
 
@@ -56,7 +60,7 @@ export class SignupComponent implements OnInit  {
                 //console.log("return to signupcompnent:")
               //  console.log(data);
               this.loading=false;
-              this.errorService.handleError({'title':'test','message':'gggg'}); //Set eror message on screen
+              this.errorService.handleError({'title':'regitarion success','message':'please confirm your regisrarion by your mail confirmation link'}); //Set eror message on screen
               
               this.router.navigateByUrl("/signin");
 
@@ -95,6 +99,19 @@ export class SignupComponent implements OnInit  {
                 return true;
     
             return false;
+        }
+
+        private passwordValidator ( control: FormControl)
+        {
+          if(this.signupForm==undefined)
+            return null;
+          else
+          {
+            if(control.value==this.signupForm.controls.password.value)
+              return null;
+            else
+              return { isEqual:false};
+          }
         }
 
 

@@ -21,6 +21,16 @@ export class HeaderComponent implements OnInit {
              this.displayName=dn;
         }
 
+        this.authService.userLogInEvent.subscribe(
+            ()=>{
+            var n=this.authService.getDisplayName();
+            if( n && n!=null){
+                 this.isExistUser=true;
+                 this.displayName=n;
+            }
+        }
+        )
+
         this.authService.userLogOutEvent.subscribe(
             ()=>{this.isExistUser=false; 
                 this.displayName="";}

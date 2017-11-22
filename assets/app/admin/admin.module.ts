@@ -6,10 +6,12 @@ import { AuthService } from '../auth/auth.service';
 import { AdminService } from './admin.service';
 import { ProductEditomponent } from './product-edit/product-edit.component';
 import { AdminRoutingModule } from './admin-routing.module';
+import { UsersManagementComponent } from './users-management/users-management.component';
 
 @NgModule({
   declarations: [
     ProductEditomponent,
+    UsersManagementComponent
   ],
   imports: [
     CommonModule,

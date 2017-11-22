@@ -30,10 +30,10 @@ export class SigninComponent implements OnInit  {
     private initForm() {
         let email = '';
         let password = '';
-
+                
         this.signinForm = new FormGroup({
             'email': new FormControl(email, [Validators.required,Validators.email]),
-            'password': new FormControl(password, Validators.required)
+            'password': new FormControl(password, Validators.required),            
         });
     }
 
@@ -58,9 +58,8 @@ export class SigninComponent implements OnInit  {
     onSubmit() {
 
         const user={
-            email:             this.signinForm.value['email'],
-
-            password:            this.signinForm.value['password'],
+            email:this.signinForm.value['email'],
+            password:this.signinForm.value['password'],
             
         };
     
@@ -69,7 +68,9 @@ export class SigninComponent implements OnInit  {
                 data => {
                    // const allCo:{}=this.cookieService.getAll();
                     var isAdmin=false;
-
+                    console.log("dataaaa=>");
+                    console.log(data);
+                    console.log(data.val);
                     if(this.isUserAdmin(data))
                         isAdmin=true;
 
@@ -84,9 +85,11 @@ export class SigninComponent implements OnInit  {
         this.signinForm.reset();
     }
 
-    isUserAdmin(user)
+    isUserAdmin(data)
     {
-        if(user.role==100)
+        console.log("is admin ? ");
+        console.log(data.val);
+        if(data.val.role==100)
             return true;
 
         return false;

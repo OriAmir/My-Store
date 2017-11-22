@@ -34,7 +34,7 @@ export class ProductEditomponent implements OnInit  {
             name:['',Validators.required],
             category:'A',
             description:['',Validators.maxLength(300)],
-            price:['',Validators.required],
+            price:[0,[Validators.required,Validators.min(0)]],
         })
     }
 

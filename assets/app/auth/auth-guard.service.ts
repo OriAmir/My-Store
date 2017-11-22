@@ -14,6 +14,7 @@ export class AuthGuard implements CanActivate {
             
         return this.authService.isLoggedIn().map(
             data=>{
+                console.log("test...")
                 console.log(data);
                 return false;
             },

@@ -1,0 +1,48 @@
+<h1>Users exist</h1>
+
+Total users exist on system = {{ usersCount }}
+
+<br/><br/>
+
+Results per page: <select (change)="selctedCahnge($event)" >
+        <option *ngFor="let opt of optionsShowUsers" [ngValue]="5"> {{opt}} </option>
+</select>
+
+<br/>
+<table class="table">
+    <thead>
+      <tr> 
+        <th>First name</th> 
+        <th>Last name</th> 
+        <th>Email address</th>
+        <th>Role</th> 
+     </tr>
+    </thead>
+
+    <tbody>         
+        <tr *ngFor="let user of users;"> 
+        <td>{{ user.firstName}}</td> 
+        <td>{{ user.lastName}}</td> 
+        <td>{{ user.email}}</td> 
+        <td>{{ user.role}}</td> 
+        </tr> 
+    </tbody>
+</table>
+
+  
+
+<table align="center">      
+    <tr>
+       <td *ngIf="buttonBackAvailable" ><i class="fa fa-arrow-left fa-2x"   (click)="backCliked()" > </i></td>
+                
+       <td  *ngFor="let num of numbers | slice:currentMinButtonsValue:currentMaxButtonsValue; let i=index">
+         <button type="button" (click)="getMoreUsersByIndex(num)" class="btn btn-primary btn-xs">{{num}}</button>
+       </td> 
+
+       <td *ngIf="lastPageNumber>currentMaxButtonsValue" ><i class="fa fa-arrow-right fa-2x" aria-hidden="true" (click)="forwardClick()" ></i></td>   
+   </tr>
+</table>
+
+
+
+

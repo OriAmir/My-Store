@@ -196,6 +196,8 @@ export class AuthService {
       return null;
       
     let decodedToken= JWT(token);
+    console.log("DECODED TOKEN:");
+    console.log(decodedToken)
     return decodedToken.user.firstName;
     
   }
